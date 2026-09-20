@@ -462,4 +462,7 @@ VOLUME [ "/opt/data" ]
 # wrapper-as-ENTRYPOINT, leading-dash args like `--version` would be
 # intercepted by /init's POSIX shell.
 ENTRYPOINT [ "/opt/hermes/docker/entrypoint-dispatch.sh" ]
-CMD [ ]
+# Default command: run the long-lived messaging gateway. A bare `hermes` needs a TTY
+# and exits immediately on PaaS hosts (e.g. Render), which stops the whole s6
+# supervision tree, dashboard included.
+CMD [ "gateway", "run" ]
