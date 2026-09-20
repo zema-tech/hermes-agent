@@ -109,7 +109,7 @@ model:
   #   Set manually only when auto-detection is wrong (e.g. a local server with
   #   a custom num_ctx, or a proxy that doesn't expose /v1/models).
   #
-  # context_length: 131072
+  context_length: 131072  # gpt-oss-120b on Groq has a 131K window (avoids the 256K fallback)
   #
   # max_tokens: OUTPUT cap — maximum tokens the model may generate per response.
   #   Unrelated to how long your conversation history can be.
