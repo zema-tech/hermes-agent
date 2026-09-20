@@ -465,4 +465,6 @@ ENTRYPOINT [ "/opt/hermes/docker/entrypoint-dispatch.sh" ]
 # Default command: run the long-lived messaging gateway. A bare `hermes` needs a TTY
 # and exits immediately on PaaS hosts (e.g. Render), which stops the whole s6
 # supervision tree, dashboard included.
-CMD [ "gateway", "run" ]
+# docker/render-cmd.sh starts a tiny keep-alive HTTP listener on $PORT (unless HERMES_DASHBOARD is
+# set), then runs `hermes gateway run`.
+CMD [ "sh", "/opt/hermes/docker/render-cmd.sh" ]
